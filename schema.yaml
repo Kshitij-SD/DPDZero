@@ -1,1 +1,9 @@
-key: val
+COLUMNS:
+  call_id: object
+  agent_id: object
+  org_id: object
+  installment_id: object
+  status: object
+  duration: float64
+  created_ts: object
+  call_date: object
