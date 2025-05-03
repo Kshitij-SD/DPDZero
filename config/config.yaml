@@ -13,3 +13,8 @@ data_merging:
   root_dir: artifacts/data_merging
   data_dir: artifacts/data_ingestion
   merged_data_dir: artifacts/data_merging/merged_data.csv
+
+feature_engineering:
+  root_dir: artifacts/feature_engineering
+  data_dir: artifacts/data_merging/merged_data.csv
+  output_dir: artifacts/feature_engineering/agent_performance_summary.csv
