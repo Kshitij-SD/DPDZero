@@ -4,7 +4,12 @@ data_ingestion:
   root_dir: artifacts/data_ingestion
   data_dir: data
 
-data validation:
+data_validation:
   root_dir: artifacts/data_validation
   data_dir: artifacts/data_ingestion/call_logs.csv
   STATUS_FILE: artifacts/data_validation/status.txt
+
+data_merging:
+  root_dir: artifacts/data_merging
+  data_dir: artifacts/data_ingestion
+  merged_data_dir: artifacts/data_merging/merged_data.csv

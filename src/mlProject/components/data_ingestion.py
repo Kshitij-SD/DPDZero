@@ -16,7 +16,7 @@ class DataIngestion:
             call_logs = pd.read_csv(self.config.data_dir + "/call_logs.csv")
             disposition_summary = pd.read_csv(self.config.data_dir + "/disposition_summary.csv")
             
-            agents_roster.to_csv(self.config.root_dir + "/agents_roster.csv" ,index=False)
+            agents_roster.to_csv(self.config.root_dir + "/agent_roster.csv" ,index=False)
             call_logs.to_csv(self.config.root_dir + "/call_logs.csv" ,index=False)
             disposition_summary.to_csv(self.config.root_dir + "/disposition_summary.csv" ,index=False)
             

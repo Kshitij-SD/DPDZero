@@ -1,6 +1,7 @@
 from mlProject.constants import *
 from mlProject.utils.common import read_yaml,create_directories
 from mlProject.entity.config_entity import DataIngestionConfig, DataValidationConfig
+from mlProject.entity.config_entity import DataMergingConfig
 
 class ConfigurationManager:
     def __init__(
@@ -42,3 +43,15 @@ class ConfigurationManager:
         )
 
         return data_validation_config
+    
+    def get_data_merging_config(self) -> DataMergingConfig:
+        config = self.config.data_merging
+
+        create_directories([config.root_dir])
+
+        data_merging_config = DataMergingConfig(
+            root_dir = config.root_dir,
+            data_dir = config.data_dir,
+            merged_data_dir = config.merged_data_dir
+        )
+        return data_merging_config

@@ -1,6 +1,7 @@
 from mlProject import logger
 from mlProject.pipeline.stage1_data_ingestion import DataIngestionTrainingPipeline
 from mlProject.pipeline.stage2_data_validation import DataValidationTrainingPipeline
+from mlProject.pipeline.stage3_data_merging import DataMergingTrainingPipeline
 
 STAGE_NAME = "Data Ingestion stage"
 try:
@@ -16,6 +17,16 @@ STAGE_NAME = "Data Validation stage"
 try:
     logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<") 
     data_ingestion = DataValidationTrainingPipeline()
+    data_ingestion.main()
+    logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+except Exception as e:
+        logger.exception(e)
+        raise e
+    
+STAGE_NAME = "Data Merging stage"
+try:
+    logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<") 
+    data_ingestion = DataMergingTrainingPipeline()
     data_ingestion.main()
     logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
 except Exception as e:

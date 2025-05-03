@@ -13,3 +13,9 @@ class DataValidationConfig:
     data_dir: Path
     STATUS_FILE: str
     all_schema: dict
+    
+@dataclass(frozen=True)
+class DataMergingConfig:
+    root_dir: Path
+    data_dir: Path
+    merged_data_dir: Path
