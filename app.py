@@ -3,17 +3,14 @@ import pandas as pd
 from datetime import datetime
 import os
 
-# Set page configuration
 st.set_page_config(
     page_title="Agent Performance Dashboard",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Constants
 DATA_PATH = "artifacts/feature_engineering/agent_performance_summary.csv"
 
-# Load data function with caching
 @st.cache_data(persist=True, show_spinner=False)
 def load_data():
     try:
@@ -25,7 +22,6 @@ def load_data():
         st.error(f"Error loading data: {str(e)}")
         return None
 
-# Generate Slack message
 def generate_slack_summary(df):
     report_date = df['call_date'].iloc[0].strftime('%Y-%m-%d')
     total_active_agents = len(df[df['presence'] == 1])
@@ -44,7 +40,6 @@ def generate_slack_summary(df):
 """
     return message
 
-# Main app
 def main():
     st.title("📊 Agent Performance Dashboard")
     
@@ -55,7 +50,6 @@ def main():
         if 'data_loaded' not in st.session_state:
             st.session_state.data_loaded = False
         
-        # Display raw data
         with st.expander("View Raw Data", expanded=False):
             if not st.session_state.data_loaded:
                 display_df = df.copy()
@@ -66,8 +60,6 @@ def main():
                 st.dataframe(display_df, height=400, use_container_width=True)
                 st.session_state.data_loaded = True
 
-        
-        # Slack summary
         st.subheader("Slack Summary")
         slack_message = generate_slack_summary(df)
         st.markdown(slack_message)
@@ -76,7 +68,6 @@ def main():
             st.session_state.slack_message = slack_message
             st.toast("Summary copied to clipboard!", icon="✅")
 
-        # Visualizations
         st.subheader("Performance Visualizations")
         tab1, tab2, tab3 = st.tabs(["Connect Rates", "Call Volume", "Duration Analysis"])
         
@@ -98,7 +89,6 @@ def main():
                 st.write("Duration vs Call Volume")
                 st.scatter_chart(df, x='total_calls', y='avg_call_duration', color='org_id', height=400)
 
-        # Download CSV
         st.download_button(
             label="📥 Download Full Report",
             data=df.to_csv(index=False).encode('utf-8'),
@@ -106,7 +96,6 @@ def main():
             mime='text/csv'
         )
 
-# Minimal CSS tweaks
 st.markdown("""
 <style>
     .main .block-container {
@@ -127,6 +116,5 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Run the app
 if __name__ == "__main__":
     main()
