@@ -41,7 +41,7 @@ def generate_slack_summary(df):
     return message
 
 def main():
-    st.title("📊 Agent Performance Dashboard")
+    st.title("Agent Performance Dashboard")
     
     with st.spinner('Loading agent performance data...'):
         df = load_data()
