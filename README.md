@@ -28,7 +28,7 @@ The following columns are validated for correct format and missing values:
 - `org_id`
 
 ### 3. **Data Merging**
-All three datasets are merged on `agent_id` and `call_date` to create a unified daily activity view for each agent.
+All three datasets are merged on `agent_id`, `org_id`, and `call_date` to create a unified daily activity view for each agent.
 
 ### 4. **Feature Engineering**
 Computed metrics for each agent include:
